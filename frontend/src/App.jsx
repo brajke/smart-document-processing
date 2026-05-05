@@ -5,7 +5,7 @@ function App() {
   const [documents, setDocuments] = useState([]);
 
   const fetchDocuments = () => {
-    fetch("http://localhost:5000/api/documents")
+    fetch("https://smart-document-processing-9946.onrender.com")
       .then((res) => res.json())
       .then((data) => setDocuments(data))
       .catch((err) => console.error(err));
