@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+const API_URL = "https://smart-document-processing-9946.onrender.com/api/documents";
+
 function App() {
   const [documents, setDocuments] = useState([]);
 
   const fetchDocuments = () => {
-    fetch("https://smart-document-processing-9946.onrender.com")
+    fetch(API_URL)
       .then((res) => res.json())
       .then((data) => setDocuments(data))
       .catch((err) => console.error(err));
@@ -32,7 +34,7 @@ function App() {
   };
 
   const saveDocument = async (doc) => {
-    await fetch(`http://localhost:5000/api/documents/${doc._id}`, {
+    await fetch(`${API_URL}/${doc._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(doc),
@@ -48,7 +50,7 @@ function App() {
       validationIssues: [],
     };
 
-    await fetch(`http://localhost:5000/api/documents/${doc._id}`, {
+    await fetch(`${API_URL}/${doc._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedDoc),
@@ -63,7 +65,7 @@ function App() {
       status: "Rejected",
     };
 
-    await fetch(`http://localhost:5000/api/documents/${doc._id}`, {
+    await fetch(`${API_URL}/${doc._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedDoc),
